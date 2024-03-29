@@ -1,6 +1,6 @@
 import Navbar from "@/components/shared/navbar/Navbar";
 
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <main className="background-light850_light100">
       <Navbar />
@@ -16,4 +16,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default Layout;
+export default RootLayout;

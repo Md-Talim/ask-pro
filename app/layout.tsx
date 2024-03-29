@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+const AppLayout = ({ children }: { children: ReactNode }) => {
   return (
     <ClerkProvider
       appearance={{
@@ -42,4 +42,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </html>
     </ClerkProvider>
   );
-}
+};
+
+export default AppLayout;
