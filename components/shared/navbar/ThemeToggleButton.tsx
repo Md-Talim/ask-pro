@@ -61,7 +61,7 @@ const ThemeToggleButton = () => {
               <p
                 className={clsx(
                   "body-semibold text-light-500 pl-2",
-                  theme === "light"
+                  theme === themeOption.value
                     ? "text-primary-500"
                     : "text-dark100_light900"
                 )}
