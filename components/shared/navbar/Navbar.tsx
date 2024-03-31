@@ -1,6 +1,7 @@
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggleButton from "./ThemeToggleButton";
 
 const Navbar = () => {
   return (
@@ -19,7 +20,7 @@ const Navbar = () => {
       </Link>
       {/* GlobalSearch: For later */}
       <div className="flex-between gap-5">
-        {/* Theme: For later */}
+        <ThemeToggleButton />
         <SignedIn>
           <UserButton
             afterSignOutUrl="/"

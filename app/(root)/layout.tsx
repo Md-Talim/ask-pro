@@ -2,7 +2,7 @@ import Navbar from "@/components/shared/navbar/Navbar";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="background-light850_light100">
+    <main className="background-light850_dark100">
       <Navbar />
       <div className="flex">
         LeftSidebar
