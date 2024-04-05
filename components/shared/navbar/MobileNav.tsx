@@ -1,5 +1,4 @@
-"use client";
-
+import NavigationLink from "@/components/shared/NavigationLink";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -9,10 +8,8 @@ import {
 } from "@/components/ui/sheet";
 import { sidebarLinks } from "@/constants";
 import { SignedOut } from "@clerk/nextjs";
-import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 
 const Logo = () => (
   <Link href="/" className="flex items-center gap-1">
@@ -29,45 +26,15 @@ const Logo = () => (
   </Link>
 );
 
-const Navigations = () => {
-  const pathname = usePathname();
-
-  return (
-    <nav className="flex h-full flex-col gap-y-6 pt-16">
-      {sidebarLinks.map((link) => {
-        const isActiveLink =
-          (pathname.includes(link.route) && link.route.length > 1) ||
-          pathname === link.route;
-
-        return (
-          <SheetClose key={link.label}>
-            <Link
-              href={link.route}
-              className={clsx(
-                isActiveLink
-                  ? "primary-gradient text-light-900 rounded-lg"
-                  : "text-dark300_light900",
-                "flex items-center gap-x-4 p-4"
-              )}
-            >
-              <Image
-                src={link.imageUrl}
-                height={20}
-                width={20}
-                alt={link.label}
-                className={clsx(!isActiveLink && "invert-colors")}
-              />
-
-              <p className={clsx(isActiveLink ? "base-bold" : "base-medium")}>
-                {link.label}
-              </p>
-            </Link>
-          </SheetClose>
-        );
-      })}
-    </nav>
-  );
-};
+const Navigations = () => (
+  <nav className="flex h-full flex-col gap-y-6 pt-16">
+    {sidebarLinks.map((link) => (
+      <SheetClose key={link.label}>
+        <NavigationLink {...link} />
+      </SheetClose>
+    ))}
+  </nav>
+);
 
 const MobileNav = () => {
   return (
