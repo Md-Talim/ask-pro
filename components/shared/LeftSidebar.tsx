@@ -7,9 +7,10 @@ import Link from "next/link";
 
 const LeftSidebar = () => {
   return (
-    <section className="background-light900_dark200 fixed left-0 bottom-0 h-full flex flex-col justify-between pb-6 pt-36 max-md:pb-14 px-6 max-sm:hidden shadow-light-300 dark:shadow-none">
+    <section className="background-light900_dark200 light-border sticky left-0 top-0 flex h-screen flex-col justify-between overflow-y-auto border-r p-6 pt-36 shadow-light-300 dark:shadow-none max-sm:hidden lg:w-64 custom-scrollbar">
       <nav className="space-y-6">
         {sidebarLinks.map((link) => (
+          // Add keys here...
           <NavigationLink {...link} isDesktop />
         ))}
       </nav>
