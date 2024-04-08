@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 
 const HomePage = () => {
   return (
@@ -15,7 +16,13 @@ const HomePage = () => {
       </div>
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
-        <div>LocalSearchBar</div>
+        <LocalSearchbar
+          route="/"
+          iconSrc="/assets/icons/search.svg"
+          iconPosition="left"
+          placeholder="Search questions..."
+          styles="flex-1"
+        />
 
         <div>Filters</div>
       </div>
