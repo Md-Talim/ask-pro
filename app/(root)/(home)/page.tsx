@@ -1,6 +1,9 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import HomeFilters from "@/components/home/HomeFilters";
+import Filter from "@/components/shared/Filter";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
+import { Button } from "@/components/ui/button";
+import { homePageFilters } from "@/constants/filters";
+import Link from "next/link";
 
 const HomePage = () => {
   return (
@@ -24,8 +27,14 @@ const HomePage = () => {
           styles="flex-1"
         />
 
-        <div>Filters</div>
+        <Filter
+          filters={homePageFilters}
+          triggerStyles="min-h-14 sm:min-w-40"
+          containerStyles="hidden max-md:flex"
+        />
       </div>
+
+      <HomeFilters />
     </>
   );
 };
