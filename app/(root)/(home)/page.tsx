@@ -1,3 +1,4 @@
+import QuestionCard from "@/components/cards/QuestionCard";
 import HomeFilters from "@/components/home/HomeFilters";
 import Filter from "@/components/shared/Filter";
 import NoResults from "@/components/shared/NoResults";
@@ -11,8 +12,8 @@ const questions = [
     _id: "1",
     title: "Cascading Deletes in SQLAlchemy?",
     tags: [
-      { _id: 1, name: "python" },
-      { _id: 2, name: "sql" },
+      { _id: "1", name: "python" },
+      { _id: "2", name: "sql" },
     ],
     author: {
       _id: "1",
@@ -28,8 +29,8 @@ const questions = [
     _id: "2",
     title: "How to center a div?",
     tags: [
-      { _id: 3, name: "css" },
-      { _id: 4, name: "html" },
+      { _id: "3", name: "css" },
+      { _id: "4", name: "html" },
     ],
     author: {
       _id: "2",
@@ -77,7 +78,7 @@ const HomePage = () => {
       <div className="mt-10 flex w-full flex-col gap-6">
         {questions.length > 0 ? (
           questions.map((question) => (
-            <div key={question._id}>QuestionCard</div>
+            <QuestionCard key={question._id} {...question} />
           ))
         ) : (
           <NoResults
