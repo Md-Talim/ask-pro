@@ -1,14 +1,7 @@
 "use client";
 
-import { questionSchema } from "@/lib/validations";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Editor } from "@tinymce/tinymce-react";
-import Image from "next/image";
-import { useRef } from "react";
-import { ControllerRenderProps, useForm } from "react-hook-form";
-import { z } from "zod";
-import { Badge } from "../ui/badge";
-import { Button } from "../ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -17,8 +10,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { questionSchema } from "@/lib/validations";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Editor } from "@tinymce/tinymce-react";
+import Image from "next/image";
+import { useRef } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const QuestionForm = () => {
   const editorRef = useRef(null);

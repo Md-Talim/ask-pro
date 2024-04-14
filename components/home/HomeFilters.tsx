@@ -1,7 +1,7 @@
 "use client";
 
-import { homePageFilters } from "@/constants/filters";
 import { Button } from "@/components/ui/button";
+import { homePageFilters } from "@/constants/filters";
 import clsx from "clsx";
 
 const HomeFilters = () => {
