@@ -16,12 +16,18 @@ import { questionSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+let type: any = "create";
+
 const QuestionForm = () => {
   const editorRef = useRef(null);
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   // Define form
   const form = useForm<z.infer<typeof questionSchema>>({
     resolver: zodResolver(questionSchema),
@@ -34,9 +40,18 @@ const QuestionForm = () => {
 
   // Define a submit handler
   const onSubmit = (values: z.infer<typeof questionSchema>) => {
-    // Do something with the form values
-    // This will be type safe and validated.
-    console.log(values);
+    setIsSubmitting(true);
+
+    try {
+      // TODO: hmake an async call to your API -> create a question
+      // contain all form data
+
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleKeyDown = (
@@ -206,7 +221,13 @@ const QuestionForm = () => {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="w-fit bg-primary-500 !text-light-900">
+          {isSubmitting ? (
+            <>{type === "edit" ? "Editing..." : "Posting..."}</>
+          ) : (
+            <>{type === "edit" ? "Edit " : "Ask a Question"}</>
+          )}
+        </Button>
       </form>
     </Form>
   );
