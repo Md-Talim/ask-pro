@@ -12,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createQuestion } from "@/lib/actions/question.action";
 import { questionSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
@@ -39,12 +40,13 @@ const QuestionForm = () => {
   });
 
   // Define a submit handler
-  const onSubmit = (values: z.infer<typeof questionSchema>) => {
+  const onSubmit = async (values: z.infer<typeof questionSchema>) => {
     setIsSubmitting(true);
 
     try {
       // TODO: hmake an async call to your API -> create a question
       // contain all form data
+      await createQuestion({});
 
       router.push("/");
     } catch (error) {
