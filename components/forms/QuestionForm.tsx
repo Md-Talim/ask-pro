@@ -24,7 +24,11 @@ import { z } from "zod";
 
 let type: any = "create";
 
-const QuestionForm = () => {
+interface Props {
+  userId: string;
+}
+
+const QuestionForm = ({ userId }: Props) => {
   const editorRef = useRef(null);
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -44,9 +48,12 @@ const QuestionForm = () => {
     setIsSubmitting(true);
 
     try {
-      // TODO: hmake an async call to your API -> create a question
-      // contain all form data
-      await createQuestion({});
+      await createQuestion({
+        title: values.title,
+        content: values.explanation,
+        tags: values.tags,
+        author: JSON.parse(userId),
+      });
 
       router.push("/");
     } catch (error) {
