@@ -17,10 +17,10 @@ import { questionSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import * as z from "zod";
 
 let type: any = "create";
 
@@ -31,6 +31,7 @@ interface Props {
 const QuestionForm = ({ userId }: Props) => {
   const editorRef = useRef(null);
   const router = useRouter();
+  const pathname = usePathname();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Define form
@@ -53,6 +54,7 @@ const QuestionForm = ({ userId }: Props) => {
         content: values.explanation,
         tags: values.tags,
         author: JSON.parse(userId),
+        path: pathname,
       });
 
       router.push("/");
@@ -82,7 +84,7 @@ const QuestionForm = ({ userId }: Props) => {
         }
 
         // If the value is not already included in tags
-        if (!field.value.includes(tagValue)) {
+        if (!field.value.includes(tagValue as never)) {
           form.setValue("tags", [...field.value, tagValue]);
           tagInput.value = "";
           form.clearErrors("tags");
