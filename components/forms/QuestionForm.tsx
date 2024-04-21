@@ -67,7 +67,7 @@ const QuestionForm = ({ userId }: Props) => {
 
   const handleKeyDown = (
     event: React.KeyboardEvent<HTMLInputElement>,
-    field: any
+    field: any,
   ) => {
     if (event.key === "Enter" && field.name === "tags") {
       event.preventDefault();
@@ -97,7 +97,7 @@ const QuestionForm = ({ userId }: Props) => {
 
   const handleRemoveTag = (tagToRemove: string, field: any) => {
     const filteredTags = field.value.filter(
-      (tag: string) => tag !== tagToRemove
+      (tag: string) => tag !== tagToRemove,
     );
 
     form.setValue("tags", filteredTags);
@@ -107,7 +107,7 @@ const QuestionForm = ({ userId }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col w-full gap-10"
+        className="flex w-full flex-col gap-10"
       >
         <FormField
           control={form.control}

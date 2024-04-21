@@ -13,7 +13,7 @@ const HomePage = async () => {
 
   return (
     <>
-      <div className="flex w-full flex-col-reverse md:flex-row justify-between">
+      <div className="flex w-full flex-col-reverse justify-between md:flex-row">
         <h1 className="h1-bold text-dark100_light900">All Questions</h1>
 
         <Link href="/ask-question">

@@ -23,7 +23,7 @@ const LocalSearchbar = ({
     <div
       className={clsx(
         "background-light800_darkgradient flex min-h-[56px] grow items-center gap-4 rounded-lg px-4",
-        styles
+        styles,
       )}
     >
       {iconPosition === "left" && (

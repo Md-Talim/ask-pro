@@ -37,11 +37,11 @@ const ThemeToggleButton = () => {
             />
           )}
         </MenubarTrigger>
-        <MenubarContent className="dark:border-dark-400 dark:bg-dark-300 absolute right-[-3rem] mt-3 min-w-[120px] rounded border py-2 z-50 bg-white">
+        <MenubarContent className="absolute right-[-3rem] z-50 mt-3 min-w-[120px] rounded border bg-white py-2 dark:border-dark-400 dark:bg-dark-300">
           {themeOptions.map((themeOption) => (
             <MenubarItem
               key={themeOption.value}
-              className="flex items-center gap-4 px-2.5 py-2 dark:focus:bg-dark-400 cursor-pointer"
+              className="flex cursor-pointer items-center gap-4 px-2.5 py-2 dark:focus:bg-dark-400"
               onClick={() => {
                 setTheme(themeOption.value);
                 if (themeOption.value !== "system") {
@@ -60,10 +60,10 @@ const ThemeToggleButton = () => {
               />
               <p
                 className={clsx(
-                  "body-semibold text-light-500 pl-2",
+                  "body-semibold pl-2 text-light-500",
                   theme === themeOption.value
                     ? "text-primary-500"
-                    : "text-dark100_light900"
+                    : "text-dark100_light900",
                 )}
               >
                 {themeOption.label}

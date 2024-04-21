@@ -36,7 +36,7 @@ const Metric = ({
         <span
           className={clsx(
             "small-regular line-clamp-1",
-            isAuthor && "max-sm:hidden"
+            isAuthor && "max-sm:hidden",
           )}
         >
           {title}

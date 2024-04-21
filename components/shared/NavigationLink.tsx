@@ -22,9 +22,9 @@ const NavigationLink = ({ route, imageUrl, label, isDesktop }: Props) => {
       href={route}
       className={clsx(
         isActiveLink
-          ? "primary-gradient text-light-900 rounded-lg"
+          ? "primary-gradient rounded-lg text-light-900"
           : "text-dark300_light900",
-        "flex items-center gap-x-4 p-4"
+        "flex items-center gap-x-4 p-4",
       )}
     >
       <Image
@@ -38,7 +38,7 @@ const NavigationLink = ({ route, imageUrl, label, isDesktop }: Props) => {
       <p
         className={clsx(
           isActiveLink ? "base-bold" : "base-medium",
-          isDesktop && "max-lg:hidden"
+          isDesktop && "max-lg:hidden",
         )}
       >
         {label}
