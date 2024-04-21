@@ -1,4 +1,4 @@
-import { createUser, updateUser } from "@/lib/actions/user.action";
+import { createUser, deleteUser, updateUser } from "@/lib/actions/user.action";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
@@ -61,7 +61,7 @@ export async function POST(req: Request) {
     const newUser = await createUser({
       clerkId: id,
       name: `${first_name}${last_name ? `${last_name}` : ""}`,
-      username: username,
+      username: username!,
       email: email_addresses[0].email_address,
       picture: image_url,
     });
@@ -78,7 +78,7 @@ export async function POST(req: Request) {
       clerkId: id,
       updateData: {
         name: `${first_name}${last_name ? `${last_name}` : ""}`,
-        username: username,
+        username: username!,
         email: email_addresses[0].email_address,
         picture: image_url,
       },
@@ -92,8 +92,8 @@ export async function POST(req: Request) {
     const { id } = evt.data;
 
     // delete user in the database
-    const deletedUser = await updateUser({
-      clerkId: id,
+    const deletedUser = await deleteUser({
+      clerkId: id!,
     });
 
     return NextResponse.json({ message: "OK", user: deletedUser });

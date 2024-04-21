@@ -15,3 +15,21 @@ interface CreateQuestionParams {
   author: Schema.Types.ObjectId | IUser;
   path: string;
 }
+
+interface CreateUserParams {
+  clerkId: string;
+  name: string;
+  username: string;
+  email: string;
+  picture: string;
+}
+
+interface UpdateUserParams {
+  clerkId: string;
+  updateData: Partial<IUser>;
+  path: string;
+}
+
+interface DeleteUserParams {
+  clerkId: string;
+}
