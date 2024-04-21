@@ -42,7 +42,7 @@ const HomePage = async () => {
       <HomeFilters />
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {result === undefined ? (
+        {result === undefined || result.questions.length === 0 ? (
           <NoResults
             title="There's no questions to show"
             description=" Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved! 💡"
