@@ -1,9 +1,10 @@
 import QuestionForm from "@/components/forms/QuestionForm";
 import { getUserById } from "@/lib/actions/user.action";
+import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 const AskQuestionPage = async () => {
-  const userId = "12345";
+  const { userId } = auth();
 
   if (!userId) redirect("/");
 
