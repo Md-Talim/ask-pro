@@ -33,3 +33,10 @@ interface UpdateUserParams {
 interface DeleteUserParams {
   clerkId: string;
 }
+
+interface GetAllUsersParams {
+  page?: number;
+  pageSize?: number;
+  filter?: string;
+  searchQuery?: string;
+}
