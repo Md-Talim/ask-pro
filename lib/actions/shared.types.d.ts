@@ -40,3 +40,8 @@ interface GetAllUsersParams {
   filter?: string;
   searchQuery?: string;
 }
+
+interface GetTopInteractedTagsParams {
+  userId: string;
+  limit?: number;
+}
