@@ -17,7 +17,7 @@ const CommunityPage = async () => {
           route="/"
           iconSrc="/assets/icons/search.svg"
           iconPosition="left"
-          placeholder="Search questions..."
+          placeholder="Search for amazing minds..."
           styles="flex-1"
         />
 
