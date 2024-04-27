@@ -90,7 +90,7 @@ export async function getAllUsers(params: GetAllUsersParams) {
 
     // const { page = 1, pageSize = 20, filter, searchQuery} = params;
 
-    const users: IUser[] = await User.find({}).sort({ createdAt: -1 });
+    const users = await User.find({}).sort({ createdAt: -1 });
 
     return { users };
   } catch (error) {
