@@ -1,6 +1,7 @@
+import Tag, { ITag } from "@/database/tag.model";
 import User from "@/database/user.model";
 import { connectToDatabase } from "@/lib/mongoose";
-import { GetTopInteractedTagsParams } from "./shared.types";
+import { GetAllTagsParams, GetTopInteractedTagsParams } from "./shared.types";
 
 export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
   try {
@@ -20,6 +21,18 @@ export async function getTopInteractedTags(params: GetTopInteractedTagsParams) {
       { _id: "2", name: "CSS" },
       { _id: "3", name: "JavaScript" },
     ];
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getAllTags(params: GetAllTagsParams) {
+  try {
+    await connectToDatabase();
+
+    const tags: ITag[] = await Tag.find({});
+
+    return { tags };
   } catch (error) {
     console.error(error);
   }

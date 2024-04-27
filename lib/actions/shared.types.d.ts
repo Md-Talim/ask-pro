@@ -45,3 +45,10 @@ interface GetTopInteractedTagsParams {
   userId: string;
   limit?: number;
 }
+
+interface GetAllTagsParams {
+  page?: number;
+  pageSize?: number;
+  filter?: string;
+  searchQuery?: string;
+}

@@ -10,3 +10,10 @@ export const userFilters = [
   { name: "Old Users", value: "old_users" },
   { name: "Top Contributors", value: "top_contributors" },
 ];
+
+export const tagFilters = [
+  { name: "Popular", value: "popular" },
+  { name: "Recent", value: "recent" },
+  { name: "Name", value: "name" },
+  { name: "Old", value: "old" },
+];
