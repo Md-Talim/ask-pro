@@ -8,6 +8,10 @@ interface GetQuestionsParams {
   filter?: string;
 }
 
+interface GetQuestionByIdParams {
+  questionId: string;
+}
+
 interface CreateQuestionParams {
   title: string;
   content: string;

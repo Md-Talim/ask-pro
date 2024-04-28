@@ -1,11 +1,15 @@
 "use server";
 
-import Question from "@/database/question.model";
+import Question, { QuestionSchema } from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
 import { connectToDatabase } from "@/lib/mongoose";
 import { revalidatePath } from "next/cache";
-import { CreateQuestionParams, GetQuestionsParams } from "./shared.types";
+import {
+  CreateQuestionParams,
+  GetQuestionByIdParams,
+  GetQuestionsParams,
+} from "./shared.types";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
@@ -57,6 +61,26 @@ export async function createQuestion(params: CreateQuestionParams) {
 
     // allows to return new data for the path. Get's rid of the cache.
     revalidatePath(path);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getQuestionById(params: GetQuestionByIdParams) {
+  try {
+    await connectToDatabase();
+
+    const { questionId } = params;
+
+    const question = await Question.findById(questionId)
+      .populate({ path: "tags", model: Tag, select: "_id name" })
+      .populate({
+        path: "author",
+        model: User,
+        select: "_id clerkId name picture",
+      });
+
+    return question;
   } catch (error) {
     console.error(error);
   }
