@@ -1,6 +1,6 @@
 "use server";
 
-import Question, { QuestionSchema } from "@/database/question.model";
+import Question from "@/database/question.model";
 import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
 import { connectToDatabase } from "@/lib/mongoose";
