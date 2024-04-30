@@ -37,7 +37,7 @@ const ThemeToggleButton = () => {
             />
           )}
         </MenubarTrigger>
-        <MenubarContent className="absolute right-[-3rem] z-50 mt-3 min-w-[120px] rounded border bg-white py-2 dark:border-dark-400 dark:bg-dark-300">
+        <MenubarContent className="absolute -right-12 z-50 mt-3 min-w-[120px] rounded border bg-white py-2 dark:border-dark-400 dark:bg-dark-300">
           {themeOptions.map((themeOption) => (
             <MenubarItem
               key={themeOption.value}

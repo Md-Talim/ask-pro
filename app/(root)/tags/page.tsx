@@ -40,7 +40,7 @@ const TagsPage = async () => {
               className="shadow-light100_darknone"
             >
               <article className="background-light900_dark200 light-border flex w-full flex-col rounded-2xl border px-8 py-10 sm:w-64">
-                <div className="background-light800_dark400 5 w-fit rounded-sm px-5 py-1">
+                <div className="background-light800_dark400 w-fit rounded-sm px-5 py-1">
                   <p className="paragraph-semibold">{tag.name}</p>
                 </div>
                 <p className="small-medium text-dark400_light500 mt-3.5">

@@ -1,18 +1,18 @@
 import { IUser } from "@/database/user.model";
 import { Schema } from "mongoose";
 
-interface GetQuestionsParams {
+export interface GetQuestionsParams {
   page?: number;
   pageSize?: number;
   searchQuery?: string;
   filter?: string;
 }
 
-interface GetQuestionByIdParams {
+export interface GetQuestionByIdParams {
   questionId: string;
 }
 
-interface CreateQuestionParams {
+export interface CreateQuestionParams {
   title: string;
   content: string;
   tags: string[];
@@ -20,7 +20,7 @@ interface CreateQuestionParams {
   path: string;
 }
 
-interface CreateUserParams {
+export interface CreateUserParams {
   clerkId: string;
   name: string;
   username: string;
@@ -28,29 +28,29 @@ interface CreateUserParams {
   picture: string;
 }
 
-interface UpdateUserParams {
+export interface UpdateUserParams {
   clerkId: string;
   updateData: Partial<IUser>;
   path: string;
 }
 
-interface DeleteUserParams {
+export interface DeleteUserParams {
   clerkId: string;
 }
 
-interface GetAllUsersParams {
+export interface GetAllUsersParams {
   page?: number;
   pageSize?: number;
   filter?: string;
   searchQuery?: string;
 }
 
-interface GetTopInteractedTagsParams {
+export interface GetTopInteractedTagsParams {
   userId: string;
   limit?: number;
 }
 
-interface GetAllTagsParams {
+export interface GetAllTagsParams {
   page?: number;
   pageSize?: number;
   filter?: string;

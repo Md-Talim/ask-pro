@@ -54,33 +54,45 @@ export async function POST(req: Request) {
   const eventType = evt.type;
 
   if (eventType === "user.created") {
-    const { id, username, first_name, last_name, image_url, email_addresses } =
-      evt.data;
+    const {
+      id,
+      username,
+      first_name: firstName,
+      last_name: lastName,
+      image_url: imageUrl,
+      email_addresses: emailAddresses,
+    } = evt.data;
 
     // create new user in the database
     const newUser = await createUser({
       clerkId: id,
-      name: `${first_name}${last_name ? `${last_name}` : ""}`,
+      name: `${firstName}${lastName ? `${lastName}` : ""}`,
       username: username!,
-      email: email_addresses[0].email_address,
-      picture: image_url,
+      email: emailAddresses[0].email_address,
+      picture: imageUrl,
     });
 
     return NextResponse.json({ message: "OK", user: newUser });
   }
 
   if (eventType === "user.updated") {
-    const { id, username, first_name, last_name, image_url, email_addresses } =
-      evt.data;
+    const {
+      id,
+      username,
+      first_name: firstName,
+      last_name: lastName,
+      image_url: imageUrl,
+      email_addresses: emailAddresses,
+    } = evt.data;
 
     // update user in the database
     const modifiedUser = await updateUser({
       clerkId: id,
       updateData: {
-        name: `${first_name}${last_name ? `${last_name}` : ""}`,
+        name: `${firstName}${lastName ? `${lastName}` : ""}`,
         username: username!,
-        email: email_addresses[0].email_address,
-        picture: image_url,
+        email: emailAddresses[0].email_address,
+        picture: imageUrl,
       },
       path: `/profile/${id}`,
     });

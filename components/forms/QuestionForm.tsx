@@ -18,11 +18,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { useRef, useState } from "react";
+import { KeyboardEvent, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
-let type: any = "create";
+const type: any = "create";
 
 interface Props {
   userId: string;
@@ -66,7 +66,7 @@ const QuestionForm = ({ userId }: Props) => {
   };
 
   const handleKeyDown = (
-    event: React.KeyboardEvent<HTMLInputElement>,
+    event: KeyboardEvent<HTMLInputElement>,
     field: any,
   ) => {
     if (event.key === "Enter" && field.name === "tags") {
