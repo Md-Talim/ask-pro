@@ -12,6 +12,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useTheme } from "@/context/ThemeProvider";
 import { createQuestion } from "@/lib/actions/question.action";
 import { questionSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,6 +30,7 @@ interface Props {
 }
 
 const QuestionForm = ({ userId }: Props) => {
+  const { theme } = useTheme();
   const editorRef = useRef(null);
   const router = useRouter();
   const pathname = usePathname();
@@ -175,6 +177,8 @@ const QuestionForm = ({ userId }: Props) => {
                       "codesample | bold italic forecolor | alignleft aligncenter |" +
                       "alignright alignjustify | bullist numlist",
                     content_style: "body { font-family:Inter; font-size:16px }",
+                    skin: theme === "dark" ? "oxide-dark" : "oxide",
+                    content_css: theme === "dark" ? "dark" : "light",
                   }}
                 />
               </FormControl>
