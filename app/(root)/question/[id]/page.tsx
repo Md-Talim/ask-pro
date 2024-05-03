@@ -3,7 +3,9 @@ import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
 import { getQuestionById } from "@/lib/actions/question.action";
+import { getUserById } from "@/lib/actions/user.action";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
+import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,6 +17,12 @@ interface Props {
 
 const QuestionPage = async ({ params }: Props) => {
   const question = await getQuestionById({ questionId: params.id });
+  const { userId: clerkId } = auth();
+  let user;
+
+  if (clerkId) {
+    user = await getUserById({ userId: clerkId });
+  }
 
   return (
     <>
@@ -76,7 +84,11 @@ const QuestionPage = async ({ params }: Props) => {
       </div>
 
       <div className="mt-6">
-        <AnswerForm />
+        <AnswerForm
+          question={question.content}
+          questionId={JSON.stringify(question._id)}
+          authorId={JSON.stringify(user._id)}
+        />
       </div>
     </>
   );
