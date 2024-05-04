@@ -1,4 +1,5 @@
 import AnswerForm from "@/components/forms/AnswerForm";
+import AllAnswers from "@/components/shared/AllAnswers";
 import Metric from "@/components/shared/Metric";
 import ParseHTML from "@/components/shared/ParseHTML";
 import RenderTag from "@/components/shared/RenderTag";
@@ -81,6 +82,14 @@ const QuestionPage = async ({ params }: Props) => {
         {question.tags.map((tag: any) => (
           <RenderTag key={tag._id} _id={tag._id} name={tag.name} />
         ))}
+      </div>
+
+      <div className="mt-11">
+        <AllAnswers
+          questionId={question._id}
+          userId={user._id}
+          totalAnswers={question.answers.length}
+        />
       </div>
 
       <div className="mt-6">

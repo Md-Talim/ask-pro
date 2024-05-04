@@ -27,3 +27,19 @@ export async function createAnswer(params: any) {
     console.error(error);
   }
 }
+
+export async function getAnswers(params: any) {
+  try {
+    await connectToDatabase();
+
+    const { questionId } = params;
+
+    const answers = await Answer.find({ question: questionId })
+      .populate("author", "_id clerkId name picture")
+      .sort({ createdAt: -1 });
+
+    return answers;
+  } catch (error) {
+    console.error(error);
+  }
+}

@@ -1,3 +1,10 @@
+export const answerFilters = [
+  { name: "Highest Upvotes", value: "highestUpvotes" },
+  { name: "Lowest Upvotes", value: "lowestUpvotes" },
+  { name: "Most Recent", value: "recent" },
+  { name: "Oldest", value: "old" },
+];
+
 export const homePageFilters = [
   { name: "Newest", value: "newest" },
   { name: "Recommended", value: "recommended" },
