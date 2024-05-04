@@ -4,8 +4,9 @@ import Answer from "@/database/answer.model";
 import Question from "@/database/question.model";
 import { connectToDatabase } from "@/lib/mongoose";
 import { revalidatePath } from "next/cache";
+import { CreateAnswerParams, GetAnswersParams } from "./shared.types";
 
-export async function createAnswer(params: any) {
+export async function createAnswer(params: CreateAnswerParams) {
   try {
     await connectToDatabase();
 
@@ -28,7 +29,7 @@ export async function createAnswer(params: any) {
   }
 }
 
-export async function getAnswers(params: any) {
+export async function getAnswers(params: GetAnswersParams) {
   try {
     await connectToDatabase();
 

@@ -56,3 +56,17 @@ export interface GetAllTagsParams {
   filter?: string;
   searchQuery?: string;
 }
+
+export interface CreateAnswerParams {
+  author: string; // author Id
+  content: string;
+  path: string;
+  question: string; // question Id
+}
+
+export interface GetAnswersParams {
+  questionId?: string;
+  sortBy?: string;
+  page?: string;
+  pageSize?: number;
+}
