@@ -1,7 +1,12 @@
 "use client";
 
+import {
+  downvoteQuestion,
+  upvoteQuestion,
+} from "@/lib/actions/question.action";
 import { formatAndDivideNumber } from "@/lib/utils";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 interface Props {
   type: "Question" | "Answer";
@@ -24,8 +29,36 @@ const Votes = ({
   hasDownvoted,
   hasSaved,
 }: Props) => {
+  const pathname = usePathname!();
+
   const handleSave = () => {};
-  const handleVote = (action: "upvote" | "downvote") => {};
+  const handleVote = async (action: "upvote" | "downvote") => {
+    if (!userId) {
+      return;
+    }
+
+    if (action === "upvote") {
+      if (type === "Question") {
+        await upvoteQuestion({
+          questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasUpvoted,
+          hasDownvoted,
+          path: pathname,
+        });
+      }
+    } else {
+      if (type === "Question") {
+        await downvoteQuestion({
+          questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasUpvoted,
+          hasDownvoted,
+          path: pathname,
+        });
+      }
+    }
+  };
 
   return (
     <div className="flex gap-5">
