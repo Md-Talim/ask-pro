@@ -10,6 +10,7 @@ import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 interface Props {
   params: {
@@ -20,11 +21,13 @@ interface Props {
 const QuestionPage = async ({ params }: Props) => {
   const question = await getQuestionById({ questionId: params.id });
   const { userId: clerkId } = auth();
-  let user;
 
-  if (clerkId) {
-    user = await getUserById({ userId: clerkId });
+  if (!clerkId) {
+    redirect("/sign-up");
   }
+
+  const user = await getUserById({ userId: clerkId });
+  console.log({ clerkId, user });
 
   return (
     <>
@@ -48,8 +51,8 @@ const QuestionPage = async ({ params }: Props) => {
           <div className="flex justify-end">
             <Votes
               type="Question"
-              itemId={question._id}
-              userId={user._id}
+              itemId={JSON.stringify(question._id)}
+              userId={JSON.stringify(user._id)}
               upvotes={question.upvotes.length}
               hasUpvoted={question.upvotes.includes(user._id)}
               downvotes={question.downvotes.length}
