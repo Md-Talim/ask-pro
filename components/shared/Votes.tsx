@@ -32,8 +32,6 @@ const Votes = ({
 }: Props) => {
   const pathname = usePathname();
 
-  console.log({ itemId, userId });
-
   const handleSave = () => {};
   const handleVote = async (action: "upvote" | "downvote") => {
     if (!userId) {

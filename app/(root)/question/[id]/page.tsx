@@ -27,7 +27,6 @@ const QuestionPage = async ({ params }: Props) => {
   }
 
   const user = await getUserById({ userId: clerkId });
-  console.log({ clerkId, user });
 
   return (
     <>
