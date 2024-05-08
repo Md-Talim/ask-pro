@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Filter from "./Filter";
 import ParseHTML from "./ParseHTML";
+import Votes from "./Votes";
 
 interface Props {
   questionId: string;
@@ -70,7 +71,15 @@ const AllAnswers = async ({
               </Link>
               {/* Voting section */}
               <div className="flex justify-end">
-                {/* TODO: Voting section */}
+                <Votes
+                  type="Answer"
+                  itemId={JSON.stringify(answer._id)}
+                  userId={JSON.stringify(userId)}
+                  upvotes={answer.upvotes.length}
+                  hasUpvoted={answer.upvotes.includes(userId)}
+                  downvotes={answer.downvotes.length}
+                  hasDownvoted={answer.downvotes.includes(userId)}
+                />
               </div>
             </div>
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { downvoteAnswer, upvoteAnswer } from "@/lib/actions/answer.action";
 import {
   downvoteQuestion,
   upvoteQuestion,
@@ -48,11 +49,27 @@ const Votes = ({
           hasDownvoted,
           path: pathname,
         });
+      } else {
+        await upvoteAnswer({
+          answerId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasUpvoted,
+          hasDownvoted,
+          path: pathname,
+        });
       }
     } else {
       if (type === "Question") {
         await downvoteQuestion({
           questionId: JSON.parse(itemId),
+          userId: JSON.parse(userId),
+          hasUpvoted,
+          hasDownvoted,
+          path: pathname,
+        });
+      } else {
+        await downvoteAnswer({
+          answerId: JSON.parse(itemId),
           userId: JSON.parse(userId),
           hasUpvoted,
           hasDownvoted,
