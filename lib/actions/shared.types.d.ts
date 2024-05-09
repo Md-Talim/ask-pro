@@ -90,3 +90,9 @@ export interface AnswerVoteParams {
   hasDownvoted: boolean;
   path: string;
 }
+
+export interface ToggleSaveQuestionParams {
+  userId: string;
+  questionId: string;
+  path: string;
+}
