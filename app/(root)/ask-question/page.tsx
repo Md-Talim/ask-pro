@@ -1,4 +1,4 @@
-import QuestionForm from "@/components/forms/QuestionForm";
+import QuestionForm from "@/components/forms/question-form";
 import { getUserById } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";

@@ -1,5 +1,5 @@
-import Metric from "@/components/shared/Metric";
-import RenderTag from "@/components/shared/RenderTag";
+import Metric from "@/components/shared/metric";
+import RenderTag from "@/components/shared/render-tag";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import Link from "next/link";
 

@@ -1,6 +1,6 @@
-import UserCard from "@/components/cards/UserCard";
-import Filter from "@/components/shared/Filter";
-import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
+import UserCard from "@/components/cards/user-card";
+import Filter from "@/components/shared/filter";
+import LocalSearchbar from "@/components/shared/search/local-searchbar";
 import { userFilters } from "@/constants/filters";
 import { getAllUsers } from "@/lib/actions/user.action";
 import Link from "next/link";

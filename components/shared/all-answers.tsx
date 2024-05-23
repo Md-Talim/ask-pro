@@ -3,9 +3,9 @@ import { getAnswers } from "@/lib/actions/answer.action";
 import { getTimestamp } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import Filter from "./Filter";
-import ParseHTML from "./ParseHTML";
-import Votes from "./Votes";
+import Filter from "./filter";
+import ParseHTML from "./parse-html";
+import Votes from "./votes";
 
 interface Props {
   questionId: string;

@@ -8,7 +8,7 @@ import {
   FormItem,
   FormMessage,
 } from "@/components/ui/form";
-import { useTheme } from "@/context/ThemeProvider";
+import { useTheme } from "@/context/theme-provider";
 import { createAnswer } from "@/lib/actions/answer.action";
 import { answerSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";

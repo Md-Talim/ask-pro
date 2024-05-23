@@ -1,9 +1,9 @@
-import AnswerForm from "@/components/forms/AnswerForm";
-import AllAnswers from "@/components/shared/AllAnswers";
-import Metric from "@/components/shared/Metric";
-import ParseHTML from "@/components/shared/ParseHTML";
-import RenderTag from "@/components/shared/RenderTag";
-import Votes from "@/components/shared/Votes";
+import AnswerForm from "@/components/forms/answer-form";
+import AllAnswers from "@/components/shared/all-answers";
+import Metric from "@/components/shared/metric";
+import ParseHTML from "@/components/shared/parse-html";
+import RenderTag from "@/components/shared/render-tag";
+import Votes from "@/components/shared/votes";
 import { getQuestionById } from "@/lib/actions/question.action";
 import { getUserById } from "@/lib/actions/user.action";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";

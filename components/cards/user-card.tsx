@@ -1,4 +1,4 @@
-import RenderTag from "@/components/shared/RenderTag";
+import RenderTag from "@/components/shared/render-tag";
 import { Badge } from "@/components/ui/badge";
 import { getTopInteractedTags } from "@/lib/actions/tag.action";
 import Image from "next/image";

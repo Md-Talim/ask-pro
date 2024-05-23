@@ -1,9 +1,9 @@
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import GlobalSearch from "../search/GlobalSearch";
-import MobileNav from "./MobileNav";
-import ThemeToggleButton from "./ThemeToggleButton";
+import GlobalSearch from "../search/global-search";
+import MobileNav from "./mobile-nav";
+import ThemeToggleButton from "./theme-toggle-button";
 
 const Navbar = () => {
   return (

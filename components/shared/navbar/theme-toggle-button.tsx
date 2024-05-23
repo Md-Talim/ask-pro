@@ -8,7 +8,7 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { themeOptions } from "@/constants";
-import { useTheme } from "@/context/ThemeProvider";
+import { useTheme } from "@/context/theme-provider";
 import clsx from "clsx";
 import Image from "next/image";
 

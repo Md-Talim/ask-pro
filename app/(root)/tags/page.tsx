@@ -1,6 +1,6 @@
-import Filter from "@/components/shared/Filter";
-import NoResults from "@/components/shared/NoResults";
-import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
+import Filter from "@/components/shared/filter";
+import NoResults from "@/components/shared/no-results";
+import LocalSearchbar from "@/components/shared/search/local-searchbar";
 import { tagFilters } from "@/constants/filters";
 import { getAllTags } from "@/lib/actions/tag.action";
 import Link from "next/link";

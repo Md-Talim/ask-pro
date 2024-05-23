@@ -1,4 +1,4 @@
-import NavigationLink from "@/components/shared/NavigationLink";
+import NavigationLink from "@/components/shared/navigation-link";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,

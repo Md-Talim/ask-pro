@@ -1,4 +1,4 @@
-import { ThemeContextProvider } from "@/context/ThemeProvider";
+import { ThemeContextProvider } from "@/context/theme-provider";
 import "@/styles/prism.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
