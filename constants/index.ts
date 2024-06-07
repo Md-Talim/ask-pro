@@ -1,3 +1,5 @@
+import { Theme } from "@/types";
+
 interface ThemeOption {
   label: string;
   value: Theme;
