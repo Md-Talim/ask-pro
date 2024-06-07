@@ -104,3 +104,8 @@ export interface GetSavedQuestionsParams {
   filter?: string;
   searchQuery?: string;
 }
+
+export interface ViewQuestionParams {
+  userId: string;
+  questionId: string;
+}
