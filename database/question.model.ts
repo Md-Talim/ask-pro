@@ -24,6 +24,6 @@ const QuestionSchema = new Schema({
   views: { type: Number, default: 0 },
 });
 
-const Question = models.Question || model("Question", QuestionSchema);
+const Question = models?.Question || model("Question", QuestionSchema);
 
 export default Question;

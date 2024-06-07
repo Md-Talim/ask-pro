@@ -69,6 +69,13 @@ export interface GetAllTagsParams {
   searchQuery?: string;
 }
 
+export interface GetQuestionByTagIdParams {
+  tagId: string;
+  page?: number;
+  pageSize?: number;
+  searchQuery?: string;
+}
+
 export interface CreateAnswerParams {
   author: string; // author Id
   content: string;
