@@ -1,5 +1,6 @@
 "use client";
 
+import { useAuth } from "@clerk/nextjs";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,9 +14,15 @@ interface Props {
 }
 
 const NavigationLink = ({ route, imageUrl, label, isDesktop }: Props) => {
+  const { userId } = useAuth();
   const pathname = usePathname();
   const isActiveLink =
     (pathname.includes(route) && route.length > 1) || pathname === route;
+
+  if (route === "/profile") {
+    if (userId) route = `${route}/${userId}`;
+    else return null;
+  }
 
   return (
     <Link
