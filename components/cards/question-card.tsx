@@ -15,6 +15,7 @@ interface Props {
     name: string;
     picture: string;
   };
+  clerkId?: string;
   upvotes: number;
   views: number;
   answers: Array<object>;
@@ -26,6 +27,7 @@ const QuestionCard = ({
   title,
   tags,
   author,
+  clerkId,
   upvotes,
   views,
   answers,
