@@ -1,4 +1,5 @@
 import ProfileLink from "@/components/shared/profile-link";
+import Stats from "@/components/shared/stats";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getUserInfo } from "@/lib/actions/user.action";
@@ -69,7 +70,7 @@ const ProfilePage = async ({ params, searchParams }: URLProps) => {
           <SignedIn>
             {clerkId === userData.user.clerkId && (
               <Link href="/profile/edit">
-                <Button className="paragraph-medium  btn-secondary text-dark300_light900 min-h-[46px] min-w-[175px] px-4 py-3">
+                <Button className="paragraph-medium btn-secondary text-dark300_light900 min-h-[46px] min-w-[175px] px-4 py-3">
                   Edit Profile
                 </Button>
               </Link>
@@ -77,7 +78,12 @@ const ProfilePage = async ({ params, searchParams }: URLProps) => {
           </SignedIn>
         </div>
       </div>
-      STATS
+
+      <Stats
+        totalQuestions={userData.totalQuestions}
+        totalAnswers={userData.totalAnswers}
+      />
+
       <div className="mt-10 flex gap-10">
         <Tabs defaultValue="top-posts" className="flex-1">
           <TabsList className="background-light800_dark400 min-h-[42px] p-1">
