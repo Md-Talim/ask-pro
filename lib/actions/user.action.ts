@@ -215,3 +215,23 @@ export async function getUserQuestions(params: GetUserStatsParams) {
     console.error(error);
   }
 }
+
+export async function getUserAnswers(params: GetUserStatsParams) {
+  try {
+    await connectToDatabase();
+
+    const { userId, page = 1, pageSize = 20 } = params;
+    const totalAnswers = await Answer.countDocuments({ author: userId });
+    const userAnswers = await Answer.find({ author: userId })
+      .sort({ upvotes: -1 })
+      .populate({
+        path: "question",
+        select: "_id title",
+      })
+      .populate("author", "_id clerkId name picture");
+
+    return { totalAnswers, answers: userAnswers };
+  } catch (error) {
+    console.error(error);
+  }
+}

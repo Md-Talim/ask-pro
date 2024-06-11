@@ -1,3 +1,4 @@
+import AnswersTab from "@/components/shared/answers-tab";
 import ProfileLink from "@/components/shared/profile-link";
 import QuestionsTab from "@/components/shared/questions-tab";
 import Stats from "@/components/shared/stats";
@@ -108,7 +109,11 @@ const ProfilePage = async ({ params, searchParams }: URLProps) => {
           </TabsContent>
 
           <TabsContent value="answers" className="flex w-full flex-col gap-6">
-            ANSWERS
+            <AnswersTab
+              clerkId={clerkId!}
+              searchParams={searchParams}
+              userId={userData.user._id}
+            />
           </TabsContent>
         </Tabs>
 
