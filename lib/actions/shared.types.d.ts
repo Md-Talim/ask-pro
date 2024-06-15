@@ -27,6 +27,11 @@ export interface EditQuestionParams {
   path: string;
 }
 
+export interface DeleteQuestionParams {
+  questionId: string;
+  path: string;
+}
+
 export interface CreateQuestionParams {
   title: string;
   content: string;
@@ -94,6 +99,11 @@ export interface CreateAnswerParams {
   content: string;
   path: string;
   question: string; // question Id
+}
+
+export interface DeleteAnswerParams {
+  answerId: string;
+  path: string;
 }
 
 export interface GetAnswersParams {

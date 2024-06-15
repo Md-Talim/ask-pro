@@ -7,11 +7,14 @@ import { connectToDatabase } from "@/lib/mongoose";
 import { revalidatePath } from "next/cache";
 import {
   CreateQuestionParams,
+  DeleteQuestionParams,
   EditQuestionParams,
   GetQuestionByIdParams,
   GetQuestionsParams,
   QuestionVoteParams,
 } from "./shared.types";
+import Answer from "@/database/answer.model";
+import Interaction from "@/database/interaction.model";
 
 export async function getQuestions(params: GetQuestionsParams) {
   try {
@@ -62,6 +65,30 @@ export async function createQuestion(params: CreateQuestionParams) {
     // increase user reputation by 5 for asking a question
 
     // allows to return new data for the path. Get's rid of the cache.
+    revalidatePath(path);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function deleteQuestion(params: DeleteQuestionParams) {
+  try {
+    await connectToDatabase();
+
+    const { questionId, path } = params;
+
+    await Question.deleteOne({ _id: questionId });
+
+    // Delete interactions and actions related to the question
+    await Answer.deleteMany({ question: questionId });
+    await Interaction.deleteMany({ question: questionId });
+
+    // Update tags to remove references to the deleted question
+    await Tag.updateMany(
+      { question: questionId },
+      { $pull: { questions: questionId } },
+    );
+
     revalidatePath(path);
   } catch (error) {
     console.error(error);
