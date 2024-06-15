@@ -1,5 +1,9 @@
 export type Theme = "light" | "dark" | "system";
 
+export interface ParamsProps {
+  params: { id: string };
+}
+
 export interface SearchParamsProps {
   searchParams: { [key: string]: string | undefined };
 }

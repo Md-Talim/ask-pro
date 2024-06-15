@@ -20,6 +20,13 @@ export interface QuestionVoteParams {
   path: string;
 }
 
+export interface EditQuestionParams {
+  questionId: string;
+  title: string;
+  content: string;
+  path: string;
+}
+
 export interface CreateQuestionParams {
   title: string;
   content: string;

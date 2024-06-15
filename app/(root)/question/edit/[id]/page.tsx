@@ -1,0 +1,30 @@
+import QuestionForm from "@/components/forms/question-form";
+import { getQuestionById } from "@/lib/actions/question.action";
+import { getUserById } from "@/lib/actions/user.action";
+import { ParamsProps } from "@/types";
+import { auth } from "@clerk/nextjs";
+
+const QuestionEditPage = async ({ params }: ParamsProps) => {
+  const { userId } = auth();
+
+  if (!userId) return null;
+
+  const user = await getUserById({ userId });
+  const question = await getQuestionById({ questionId: params.id });
+
+  return (
+    <>
+      <h1 className="h1-bold text-dark100_light900">Edit Question</h1>
+
+      <div className="mt-9">
+        <QuestionForm
+          type="Edit"
+          userId={JSON.stringify(user._id)}
+          questionDetails={JSON.stringify(question)}
+        />
+      </div>
+    </>
+  );
+};
+
+export default QuestionEditPage;

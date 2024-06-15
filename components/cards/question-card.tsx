@@ -2,6 +2,8 @@ import Metric from "@/components/shared/metric";
 import RenderTag from "@/components/shared/render-tag";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
 import Link from "next/link";
+import { SignedIn } from "@clerk/nextjs";
+import EditDeleteAction from "../shared/edit-delete-action";
 
 interface Props {
   _id: string;
@@ -12,6 +14,7 @@ interface Props {
   }[];
   author: {
     _id: string;
+    clerkId: string;
     name: string;
     picture: string;
   };
@@ -33,6 +36,8 @@ const QuestionCard = ({
   answers,
   createdAt,
 }: Props) => {
+  const canPerformActions = clerkId === author.clerkId;
+
   return (
     <article className="card-wrapper rounded-xl p-9 sm:px-11">
       <div className="flex flex-col-reverse items-start justify-between gap-5 sm:flex-row">
@@ -47,6 +52,12 @@ const QuestionCard = ({
             </h3>
           </Link>
         </div>
+
+        <SignedIn>
+          {canPerformActions && (
+            <EditDeleteAction type="Question" itemId={JSON.stringify(_id)} />
+          )}
+        </SignedIn>
       </div>
 
       <div className="mt-3 flex flex-wrap gap-2">

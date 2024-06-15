@@ -7,6 +7,7 @@ import { connectToDatabase } from "@/lib/mongoose";
 import { revalidatePath } from "next/cache";
 import {
   CreateQuestionParams,
+  EditQuestionParams,
   GetQuestionByIdParams,
   GetQuestionsParams,
   QuestionVoteParams,
@@ -150,6 +151,28 @@ export async function downvoteQuestion(params: QuestionVoteParams) {
     }
 
     // TODO: Increment author's reputation
+
+    revalidatePath(path);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function editQuestion(params: EditQuestionParams) {
+  try {
+    await connectToDatabase();
+
+    const { questionId, title, content, path } = params;
+    const question = await Question.findById(questionId);
+
+    if (!question) {
+      throw new Error("Question not found!");
+    }
+
+    question.title = title;
+    question.content = content;
+
+    await question.save();
 
     revalidatePath(path);
   } catch (error) {
