@@ -14,7 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useTheme } from "@/context/theme-provider";
 import { createQuestion, editQuestion } from "@/lib/actions/question.action";
-import { questionSchema } from "@/lib/validations";
+import { QuestionSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
 import Image from "next/image";
@@ -41,8 +41,8 @@ const QuestionForm = ({ type, questionDetails, userId }: Props) => {
   const groupedTags = parsedQuestionDetails.tags.map((tag: any) => tag.name);
 
   // Define form
-  const form = useForm<z.infer<typeof questionSchema>>({
-    resolver: zodResolver(questionSchema),
+  const form = useForm<z.infer<typeof QuestionSchema>>({
+    resolver: zodResolver(QuestionSchema),
     defaultValues: {
       title: parsedQuestionDetails.title || "",
       explanation: parsedQuestionDetails.content || "",
@@ -51,7 +51,7 @@ const QuestionForm = ({ type, questionDetails, userId }: Props) => {
   });
 
   // Define a submit handler
-  const onSubmit = async (values: z.infer<typeof questionSchema>) => {
+  const onSubmit = async (values: z.infer<typeof QuestionSchema>) => {
     setIsSubmitting(true);
 
     try {

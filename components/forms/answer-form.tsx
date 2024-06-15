@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/form";
 import { useTheme } from "@/context/theme-provider";
 import { createAnswer } from "@/lib/actions/answer.action";
-import { answerSchema } from "@/lib/validations";
+import { AnswerSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
 import Image from "next/image";
@@ -31,14 +31,14 @@ const AnswerForm = ({ authorId, question, questionId }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const editorRef = useRef(null);
 
-  const form = useForm<z.infer<typeof answerSchema>>({
-    resolver: zodResolver(answerSchema),
+  const form = useForm<z.infer<typeof AnswerSchema>>({
+    resolver: zodResolver(AnswerSchema),
     defaultValues: {
       answer: "",
     },
   });
 
-  const handleCreateAnswer = async (values: z.infer<typeof answerSchema>) => {
+  const handleCreateAnswer = async (values: z.infer<typeof AnswerSchema>) => {
     setIsSubmitting(true);
 
     try {
