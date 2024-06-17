@@ -1,18 +1,12 @@
+import { getTopQuestions } from "@/lib/actions/question.action";
+import { getPopularTags } from "@/lib/actions/tag.action";
 import Image from "next/image";
 import Link from "next/link";
 import RenderTag from "./render-tag";
-import { getTopQuestions } from "@/lib/actions/question.action";
-
-const popularTags = [
-  { _id: "1", name: "javascript", totalQuestions: 5 },
-  { _id: "2", name: "react", totalQuestions: 5 },
-  { _id: "3", name: "next", totalQuestions: 5 },
-  { _id: "4", name: "vue", totalQuestions: 2 },
-  { _id: "5", name: "redux", totalQuestions: 10 },
-];
 
 const RightSidebar = async () => {
   const topQuestions = await getTopQuestions();
+  const popularTags = await getPopularTags();
 
   return (
     <section className="background-light900_dark200 light-border sticky right-0 top-0 flex h-screen max-w-xs flex-col overflow-y-auto border-l p-6 pt-36 shadow-light-300 dark:shadow-none max-xl:hidden">
@@ -44,9 +38,10 @@ const RightSidebar = async () => {
       <div className="mt-16">
         <h3 className="h3-bold text-dark200_light900">Popular Tags</h3>
         <div className="mt-7 flex flex-col gap-4">
-          {popularTags.map((tag) => (
-            <RenderTag key={tag._id} {...tag} showCount />
-          ))}
+          {popularTags &&
+            popularTags.map((tag) => (
+              <RenderTag key={tag._id} {...tag} showCount />
+            ))}
         </div>
       </div>
     </section>
