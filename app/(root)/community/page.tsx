@@ -3,10 +3,13 @@ import Filter from "@/components/shared/filter";
 import LocalSearchbar from "@/components/shared/search/local-searchbar";
 import { userFilters } from "@/constants/filters";
 import { getAllUsers } from "@/lib/actions/user.action";
+import { SearchParamsProps } from "@/types";
 import Link from "next/link";
 
-const CommunityPage = async () => {
-  const results = await getAllUsers({});
+const CommunityPage = async ({ searchParams }: SearchParamsProps) => {
+  const results = await getAllUsers({
+    searchQuery: searchParams.q,
+  });
 
   return (
     <>
@@ -14,7 +17,7 @@ const CommunityPage = async () => {
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
         <LocalSearchbar
-          route="/"
+          route="/community"
           iconSrc="/assets/icons/search.svg"
           iconPosition="left"
           placeholder="Search for amazing minds..."

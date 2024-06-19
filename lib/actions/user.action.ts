@@ -1,8 +1,11 @@
 "use server";
 
+import Answer from "@/database/answer.model";
 import Question from "@/database/question.model";
+import Tag from "@/database/tag.model";
 import User from "@/database/user.model";
 import { connectToDatabase } from "@/lib/mongoose";
+import { FilterQuery } from "mongoose";
 import { revalidatePath } from "next/cache";
 import {
   CreateUserParams,
@@ -14,9 +17,6 @@ import {
   ToggleSaveQuestionParams,
   UpdateUserParams,
 } from "./shared.types";
-import Tag from "@/database/tag.model";
-import { FilterQuery } from "mongoose";
-import Answer from "@/database/answer.model";
 
 export async function getUserById(params: GetUserByIdParams) {
   try {
@@ -95,9 +95,17 @@ export async function getAllUsers(params: GetAllUsersParams) {
   try {
     await connectToDatabase();
 
-    // const { page = 1, pageSize = 20, filter, searchQuery} = params;
+    const { searchQuery } = params;
+    const query: FilterQuery<typeof User> = {};
 
-    const users = await User.find({}).sort({ createdAt: -1 });
+    if (searchQuery) {
+      query.$or = [
+        { name: { $regex: new RegExp(searchQuery, "i") } },
+        { username: { $regex: new RegExp(searchQuery, "i") } },
+      ];
+    }
+
+    const users = await User.find(query).sort({ createdAt: -1 });
 
     return { users };
   } catch (error) {
