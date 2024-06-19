@@ -4,16 +4,20 @@ import NoResults from "@/components/shared/no-results";
 import LocalSearchbar from "@/components/shared/search/local-searchbar";
 import { questionFilters } from "@/constants/filters";
 import { getSavedQuestions } from "@/lib/actions/user.action";
+import { SearchParamsProps } from "@/types";
 import { auth } from "@clerk/nextjs";
 
-const CollectionPage = async () => {
+const CollectionPage = async ({ searchParams }: SearchParamsProps) => {
   const { userId } = auth();
 
   if (!userId) {
     return null;
   }
 
-  const result = await getSavedQuestions({ clerkId: userId });
+  const result = await getSavedQuestions({
+    clerkId: userId,
+    searchQuery: searchParams.q,
+  });
 
   return (
     <>
@@ -21,7 +25,7 @@ const CollectionPage = async () => {
 
       <div className="mt-11 flex justify-between gap-5 max-sm:flex-col sm:items-center">
         <LocalSearchbar
-          route="/"
+          route="/collection"
           iconSrc="/assets/icons/search.svg"
           iconPosition="left"
           placeholder="Search questions..."
