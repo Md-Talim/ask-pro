@@ -66,7 +66,7 @@ export async function POST(req: Request) {
     // create new user in the database
     const newUser = await createUser({
       clerkId: id,
-      name: `${firstName}${lastName ? `${lastName}` : ""}`,
+      name: `${firstName}${lastName ? ` ${lastName}` : ""}`,
       username: username!,
       email: emailAddresses[0].email_address,
       picture: imageUrl,
@@ -89,7 +89,7 @@ export async function POST(req: Request) {
     const modifiedUser = await updateUser({
       clerkId: id,
       updateData: {
-        name: `${firstName}${lastName ? `${lastName}` : ""}`,
+        name: `${firstName}${lastName ? ` ${lastName}` : ""}`,
         username: username!,
         email: emailAddresses[0].email_address,
         picture: imageUrl,
