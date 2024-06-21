@@ -17,6 +17,7 @@ const CollectionPage = async ({ searchParams }: SearchParamsProps) => {
   const result = await getSavedQuestions({
     clerkId: userId,
     searchQuery: searchParams.q,
+    filter: searchParams.filter,
   });
 
   return (
@@ -35,7 +36,6 @@ const CollectionPage = async ({ searchParams }: SearchParamsProps) => {
         <Filter
           filters={questionFilters}
           triggerStyles="min-h-14 sm:min-w-40"
-          containerStyles="hidden max-md:flex"
         />
       </div>
 
