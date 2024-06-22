@@ -109,7 +109,7 @@ export interface DeleteAnswerParams {
 export interface GetAnswersParams {
   questionId?: string;
   sortBy?: string;
-  page?: string;
+  page?: number;
   pageSize?: number;
 }
 

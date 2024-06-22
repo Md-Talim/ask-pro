@@ -33,7 +33,7 @@ const Filter = ({ filters, triggerStyles, containerStyles }: Props) => {
       value,
     });
 
-    router.push(newUrl);
+    router.push(newUrl, { scroll: false });
   };
 
   return (

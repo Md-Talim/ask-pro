@@ -7,18 +7,13 @@ import Votes from "@/components/shared/votes";
 import { getQuestionById } from "@/lib/actions/question.action";
 import { getUserById } from "@/lib/actions/user.action";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
+import { URLProps } from "@/types";
 import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-interface Props {
-  params: {
-    id: string;
-  };
-}
-
-const QuestionPage = async ({ params }: Props) => {
+const QuestionPage = async ({ params, searchParams }: URLProps) => {
   const question = await getQuestionById({ questionId: params.id });
   const { userId: clerkId } = auth();
 
@@ -103,6 +98,8 @@ const QuestionPage = async ({ params }: Props) => {
           questionId={question._id}
           userId={user._id}
           totalAnswers={question.answers.length}
+          page={searchParams?.page}
+          filter={searchParams?.filter}
         />
       </div>
 
