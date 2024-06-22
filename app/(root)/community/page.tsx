@@ -1,5 +1,6 @@
 import UserCard from "@/components/cards/user-card";
 import Filter from "@/components/shared/filter";
+import Pagination from "@/components/shared/pagination";
 import LocalSearchbar from "@/components/shared/search/local-searchbar";
 import { userFilters } from "@/constants/filters";
 import { getAllUsers } from "@/lib/actions/user.action";
@@ -7,9 +8,10 @@ import { SearchParamsProps } from "@/types";
 import Link from "next/link";
 
 const CommunityPage = async ({ searchParams }: SearchParamsProps) => {
-  const results = await getAllUsers({
+  const result = await getAllUsers({
     searchQuery: searchParams.q,
     filter: searchParams.filter,
+    page: searchParams.page ? +searchParams.page : 1,
   });
 
   return (
@@ -29,7 +31,7 @@ const CommunityPage = async ({ searchParams }: SearchParamsProps) => {
       </div>
 
       <section className="mt-12 flex flex-wrap gap-4">
-        {results?.users === undefined || results?.users.length <= 0 ? (
+        {result?.users === undefined || result?.users.length <= 0 ? (
           <div className="paragraph-regular text-dark200_light800 mx-auto max-w-4xl text-center">
             <p>No users yet.</p>
             <Link href="/sign-up" className="mt-2 font-bold text-accent-blue">
@@ -37,9 +39,16 @@ const CommunityPage = async ({ searchParams }: SearchParamsProps) => {
             </Link>
           </div>
         ) : (
-          results.users.map((user) => <UserCard key={user._id} user={user} />)
+          result.users.map((user) => <UserCard key={user._id} user={user} />)
         )}
       </section>
+
+      <div className="mt-10">
+        <Pagination
+          pageNumber={searchParams.page ? +searchParams.page : 1}
+          isNext={result?.isNext}
+        />
+      </div>
     </>
   );
 };
