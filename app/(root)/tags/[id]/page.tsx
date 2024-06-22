@@ -1,5 +1,6 @@
 import QuestionCard from "@/components/cards/question-card";
 import NoResults from "@/components/shared/no-results";
+import Pagination from "@/components/shared/pagination";
 import LocalSearchbar from "@/components/shared/search/local-searchbar";
 import { getQuestionByTagId } from "@/lib/actions/tag.action";
 import { URLProps } from "@/types";
@@ -7,7 +8,7 @@ import { URLProps } from "@/types";
 const TagDetailsPage = async ({ params, searchParams }: URLProps) => {
   const result = await getQuestionByTagId({
     tagId: params.id,
-    page: 1,
+    page: searchParams.page ? +searchParams.page : 1,
     searchQuery: searchParams.q,
   });
 
@@ -48,6 +49,13 @@ const TagDetailsPage = async ({ params, searchParams }: URLProps) => {
             />
           ))
         )}
+      </div>
+
+      <div className="mt-10">
+        <Pagination
+          pageNumber={searchParams.page ? +searchParams.page : 1}
+          isNext={result?.isNext}
+        />
       </div>
     </>
   );
