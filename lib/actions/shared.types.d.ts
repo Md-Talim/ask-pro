@@ -139,3 +139,8 @@ export interface ViewQuestionParams {
   userId: string;
   questionId: string;
 }
+
+export interface SearchParams {
+  searchQuery?: string | null;
+  queryType?: string | null;
+}
