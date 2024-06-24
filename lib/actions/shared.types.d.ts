@@ -98,7 +98,7 @@ export interface CreateAnswerParams {
   author: string; // author Id
   content: string;
   path: string;
-  question: string; // question Id
+  questionId: string; // question Id
 }
 
 export interface DeleteAnswerParams {
