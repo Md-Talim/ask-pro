@@ -13,7 +13,6 @@ import { createAnswer } from "@/lib/actions/answer.action";
 import { AnswerSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Editor } from "@tinymce/tinymce-react";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -70,7 +69,7 @@ const AnswerForm = ({ authorId, question, questionId }: Props) => {
           Write your answer here
         </h4>
 
-        <Button className="btn light-border-2 gap-1.5 rounded-md px-4 py-2.5 text-primary-500 shadow-none">
+        {/* <Button className="btn light-border-2 gap-1.5 rounded-md px-4 py-2.5 text-primary-500 shadow-none">
           <Image
             src="/assets/icons/stars.svg"
             alt="Stars"
@@ -79,7 +78,7 @@ const AnswerForm = ({ authorId, question, questionId }: Props) => {
             className="object-contain"
           />
           <p>Genereate an AI answer</p>
-        </Button>
+        </Button> */}
       </div>
 
       <Form {...form}>

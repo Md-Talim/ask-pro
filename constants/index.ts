@@ -32,11 +32,11 @@ export const sidebarLinks: SidebarLink[] = [
     route: "/collection",
     label: "Collections",
   },
-  {
-    imageUrl: "/assets/icons/suitcase.svg",
-    route: "/jobs",
-    label: "Find Jobs",
-  },
+  // {
+  //   imageUrl: "/assets/icons/suitcase.svg",
+  //   route: "/jobs",
+  //   label: "Find Jobs",
+  // },
   {
     imageUrl: "/assets/icons/tag.svg",
     route: "/tags",
