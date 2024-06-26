@@ -264,15 +264,15 @@ export async function getUserInfo(params: GetUserByIdParams) {
       { type: "ANSWER_COUNT" as BadgeCriteriaType, count: totalAnswers },
       {
         type: "QUESTION_UPVOTES" as BadgeCriteriaType,
-        count: questionUpvotes.totalUpvotes || 0,
+        count: questionUpvotes?.totalUpvotes || 0,
       },
       {
         type: "ANSWER_UPVOTES" as BadgeCriteriaType,
-        count: answerUpvotes.totalUpvotes || 0,
+        count: answerUpvotes?.totalUpvotes || 0,
       },
       {
         type: "TOTAL_VIEWS" as BadgeCriteriaType,
-        count: questionViews.totalViews || 0,
+        count: questionViews?.totalViews || 0,
       },
     ];
 
