@@ -18,9 +18,9 @@ const spaceGrotesk = SpaceGrotesk({
 });
 
 export const metadata: Metadata = {
-  title: "FrontFlow",
+  title: "AskPro",
   description:
-    "A community-driven platform for asking and answering programming questions. Get help, share knowledge, and collaborate with developers around the world. Explore topics web development, mobile app development, data structures & algorithms and more.",
+    "A platform designed to foster knowledge sharing and community interaction.",
   icons: {
     icon: "/assets/images/site-logo.svg",
   },

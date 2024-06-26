@@ -5,7 +5,12 @@ import LocalSearchbar from "@/components/shared/search/local-searchbar";
 import { tagFilters } from "@/constants/filters";
 import { getAllTags } from "@/lib/actions/tag.action";
 import { SearchParamsProps } from "@/types";
+import { Metadata } from "next";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Tags | AskPro",
+};
 
 const TagsPage = async ({ searchParams }: SearchParamsProps) => {
   const result = await getAllTags({
