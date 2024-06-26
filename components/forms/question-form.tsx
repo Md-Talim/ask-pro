@@ -22,6 +22,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { KeyboardEvent, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   type?: "Create" | "Edit";
@@ -64,6 +65,11 @@ const QuestionForm = ({ type, questionDetails, userId }: Props) => {
         });
 
         router.push(`/question/${parsedQuestionDetails._id}`);
+
+        toast({
+          title: "✅ Update Successful",
+          description: "Your question has been updated!",
+        });
       } else {
         await createQuestion({
           title: values.title,
@@ -74,9 +80,19 @@ const QuestionForm = ({ type, questionDetails, userId }: Props) => {
         });
 
         router.push("/");
+
+        toast({
+          title: "✅ Post Successful",
+          description: "Your question has been posted!",
+        });
       }
     } catch (error) {
       console.error(error);
+
+      toast({
+        title: "❌ Something went wrong.",
+        description: "There was a problem with your request.",
+      });
     } finally {
       setIsSubmitting(false);
     }

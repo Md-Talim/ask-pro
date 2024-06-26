@@ -17,6 +17,7 @@ import { usePathname } from "next/navigation";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   authorId: string;
@@ -55,8 +56,18 @@ const AnswerForm = ({ authorId, question, questionId }: Props) => {
 
         editor.setContent("");
       }
+
+      toast({
+        title: "✅ Answer Posted",
+        description: "Your answer has been posted!",
+      });
     } catch (error) {
       console.error(error);
+
+      toast({
+        title: "❌ Something went wrong.",
+        description: "There was a problem with your request.",
+      });
     } finally {
       setIsSubmitting(false);
     }

@@ -18,6 +18,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { toast } from "../ui/use-toast";
 
 interface Props {
   clerkId: string;
@@ -58,8 +59,18 @@ const ProfileForm = ({ clerkId, user }: Props) => {
       });
 
       router.back();
+
+      toast({
+        title: "✅ Profile Updated",
+        description: "Your profile information has been successfully updated.",
+      });
     } catch (error) {
       console.error(error);
+
+      toast({
+        title: "❌ Something went wrong.",
+        description: "There was a problem with your request.",
+      });
     } finally {
       setIsSubmitting(false);
     }
