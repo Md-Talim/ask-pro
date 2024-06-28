@@ -1,4 +1,5 @@
 import AnswersTab from "@/components/shared/answers-tab";
+import NoResults from "@/components/shared/no-results";
 import ProfileLink from "@/components/shared/profile-link";
 import QuestionsTab from "@/components/shared/questions-tab";
 import Stats from "@/components/shared/stats";
@@ -103,19 +104,33 @@ const ProfilePage = async ({ params, searchParams }: URLProps) => {
             value="top-posts"
             className="mt-5 flex w-full flex-col gap-6"
           >
-            <QuestionsTab
-              clerkId={clerkId!}
-              searchParams={searchParams}
-              userId={userData.user._id}
-            />
+            {userData.totalQuestions === 0 ? (
+              <NoResults
+                title="No questions found."
+                description={`${userData.user.name} hasn't posted any questions yet.`}
+              />
+            ) : (
+              <QuestionsTab
+                clerkId={clerkId!}
+                searchParams={searchParams}
+                userId={userData.user._id}
+              />
+            )}
           </TabsContent>
 
           <TabsContent value="answers" className="flex w-full flex-col gap-6">
-            <AnswersTab
-              clerkId={clerkId!}
-              searchParams={searchParams}
-              userId={userData.user._id}
-            />
+            {userData.totalAnswers === 0 ? (
+              <NoResults
+                title="No answers found."
+                description={`${userData.user.name} hasn't contributed to any questions yet.`}
+              />
+            ) : (
+              <AnswersTab
+                clerkId={clerkId!}
+                searchParams={searchParams}
+                userId={userData.user._id}
+              />
+            )}
           </TabsContent>
         </Tabs>
 
