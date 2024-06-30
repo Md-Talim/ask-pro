@@ -3,7 +3,9 @@ import AllAnswers from "@/components/shared/all-answers";
 import Metric from "@/components/shared/metric";
 import ParseHTML from "@/components/shared/parse-html";
 import RenderTag from "@/components/shared/render-tag";
+import UnauthenticatedVotes from "@/components/shared/unauthenticated-votes";
 import Votes from "@/components/shared/votes";
+import { Button } from "@/components/ui/button";
 import { getQuestionById } from "@/lib/actions/question.action";
 import { getUserById } from "@/lib/actions/user.action";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
@@ -11,17 +13,15 @@ import { URLProps } from "@/types";
 import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const QuestionPage = async ({ params, searchParams }: URLProps) => {
   const question = await getQuestionById({ questionId: params.id });
-  const { userId: clerkId } = auth();
+  const { userId } = auth();
 
-  if (!clerkId) {
-    redirect("/sign-up");
+  let user = null;
+  if (userId) {
+    user = await getUserById({ userId });
   }
-
-  const user = await getUserById({ userId: clerkId });
 
   return (
     <>
@@ -43,16 +43,24 @@ const QuestionPage = async ({ params, searchParams }: URLProps) => {
             </p>
           </Link>
           <div className="flex justify-end">
-            <Votes
-              type="Question"
-              itemId={JSON.stringify(question._id)}
-              userId={JSON.stringify(user._id)}
-              upvotes={question.upvotes.length}
-              hasUpvoted={question.upvotes.includes(user._id)}
-              downvotes={question.downvotes.length}
-              hasDownvoted={question.downvotes.includes(user._id)}
-              hasSaved={user.saved.includes(question._id)}
-            />
+            {user ? (
+              <Votes
+                type="Question"
+                itemId={JSON.stringify(question._id)}
+                userId={JSON.stringify(user._id)}
+                upvotes={question.upvotes.length}
+                hasUpvoted={question.upvotes.includes(user._id)}
+                downvotes={question.downvotes.length}
+                hasDownvoted={question.downvotes.includes(user._id)}
+                hasSaved={user.saved.includes(question._id)}
+              />
+            ) : (
+              <UnauthenticatedVotes
+                type="Question"
+                upvotes={question.upvotes.length}
+                downvotes={question.downvotes.length}
+              />
+            )}
           </div>
         </div>
 
@@ -96,7 +104,7 @@ const QuestionPage = async ({ params, searchParams }: URLProps) => {
       <div className="mt-11">
         <AllAnswers
           questionId={question._id}
-          userId={user._id}
+          userId={user?._id}
           totalAnswers={question.answers.length}
           page={searchParams?.page}
           filter={searchParams?.filter}
@@ -104,11 +112,35 @@ const QuestionPage = async ({ params, searchParams }: URLProps) => {
       </div>
 
       <div className="mt-6">
-        <AnswerForm
-          question={question.content}
-          questionId={JSON.stringify(question._id)}
-          authorId={JSON.stringify(user._id)}
-        />
+        {user ? (
+          <AnswerForm
+            question={question.content}
+            questionId={JSON.stringify(question._id)}
+            authorId={JSON.stringify(user._id)}
+          />
+        ) : (
+          <div className="mt-8 flex flex-col items-center">
+            <Image
+              src="/assets/images/collaboration.svg"
+              width={270}
+              height={200}
+              alt="Collaborate"
+              className="mx-auto object-contain"
+            />
+            <h2 className="h2-bold text-dark200_light900 mt-8">
+              Join AskPro to answer this question.
+            </h2>
+            <p className="body-regular text-dark500_light700 my-3.5 text-center">
+              Join the AskPro community to share your knowledge, ask questions,
+              and engage with other users!
+            </p>
+            <Link href="/sign-up">
+              <Button className="paragraph-medium mt-5 min-h-10 rounded-lg bg-primary-500 px-4 py-3 text-light-900">
+                Join Now!
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

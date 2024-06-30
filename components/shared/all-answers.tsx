@@ -6,11 +6,12 @@ import Link from "next/link";
 import Filter from "./filter";
 import Pagination from "./pagination";
 import ParseHTML from "./parse-html";
+import UnauthenticatedVotes from "./unauthenticated-votes";
 import Votes from "./votes";
 
 interface Props {
   questionId: string;
-  userId: string;
+  userId?: string;
   totalAnswers: number;
   page?: string;
   filter?: string;
@@ -76,15 +77,23 @@ const AllAnswers = async ({
               </Link>
               {/* Voting section */}
               <div className="flex justify-end">
-                <Votes
-                  type="Answer"
-                  itemId={JSON.stringify(answer._id)}
-                  userId={JSON.stringify(userId)}
-                  upvotes={answer.upvotes.length}
-                  hasUpvoted={answer.upvotes.includes(userId)}
-                  downvotes={answer.downvotes.length}
-                  hasDownvoted={answer.downvotes.includes(userId)}
-                />
+                {userId ? (
+                  <Votes
+                    type="Answer"
+                    itemId={JSON.stringify(answer._id)}
+                    userId={JSON.stringify(userId)}
+                    upvotes={answer.upvotes.length}
+                    hasUpvoted={answer.upvotes.includes(userId)}
+                    downvotes={answer.downvotes.length}
+                    hasDownvoted={answer.downvotes.includes(userId)}
+                  />
+                ) : (
+                  <UnauthenticatedVotes
+                    type="Answer"
+                    upvotes={answer.upvotes.length}
+                    downvotes={answer.downvotes.length}
+                  />
+                )}
               </div>
             </div>
 
