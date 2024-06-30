@@ -1,3 +1,4 @@
+import { UnauthenticatedVotes, Votes } from "@/components/shared/votes";
 import { answerFilters } from "@/constants/filters";
 import { getAnswers } from "@/lib/actions/answer.action";
 import { getTimestamp } from "@/lib/utils";
@@ -6,8 +7,6 @@ import Link from "next/link";
 import Filter from "./filter";
 import Pagination from "./pagination";
 import ParseHTML from "./parse-html";
-import UnauthenticatedVotes from "./unauthenticated-votes";
-import Votes from "./votes";
 
 interface Props {
   questionId: string;

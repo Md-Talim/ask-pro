@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "@/components/ui/use-toast";
 import { downvoteAnswer, upvoteAnswer } from "@/lib/actions/answer.action";
 import { viewQuestion } from "@/lib/actions/interaction.action";
 import {
@@ -11,7 +12,6 @@ import { formatAndDivideNumber } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { toast } from "../ui/use-toast";
 
 interface Props {
   type: "Question" | "Answer";
