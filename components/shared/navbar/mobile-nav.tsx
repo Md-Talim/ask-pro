@@ -27,7 +27,7 @@ const Logo = () => (
 );
 
 const Navigations = () => (
-  <nav className="flex h-full flex-col gap-y-6 pt-16">
+  <nav className="flex h-full flex-col gap-6">
     {sidebarLinks.map((link) => (
       <SheetClose key={link.label}>
         <NavigationLink {...link} />
@@ -49,33 +49,35 @@ const MobileNav = () => (
     </SheetTrigger>
     <SheetContent
       side="left"
-      className="background-light900_dark200 border-none"
+      className="background-light900_dark200 flex h-full flex-col gap-16 border-none"
     >
       <Logo />
 
-      <SheetClose>
-        <Navigations />
-      </SheetClose>
+      <div className="flex flex-1 flex-col justify-between">
+        <SheetClose>
+          <Navigations />
+        </SheetClose>
 
-      <SignedOut>
-        <div className="flex flex-col gap-y-3">
-          <SheetClose asChild>
-            <Link href={"/sign-in"}>
-              <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                <span className="primary-text-gradient">Login</span>
-              </Button>
-            </Link>
-          </SheetClose>
+        <SignedOut>
+          <div className="flex flex-col gap-y-3">
+            <SheetClose asChild>
+              <Link href={"/sign-in"}>
+                <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                  <span className="primary-text-gradient">Login</span>
+                </Button>
+              </Link>
+            </SheetClose>
 
-          <SheetClose asChild>
-            <Link href={"/sign-up"}>
-              <Button className="small-medium btn-tertiary text-dark400_light900 light-border-2 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                Signup
-              </Button>
-            </Link>
-          </SheetClose>
-        </div>
-      </SignedOut>
+            <SheetClose asChild>
+              <Link href={"/sign-up"}>
+                <Button className="small-medium btn-tertiary text-dark400_light900 light-border-2 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                  Signup
+                </Button>
+              </Link>
+            </SheetClose>
+          </div>
+        </SignedOut>
+      </div>
     </SheetContent>
   </Sheet>
 );

@@ -21,7 +21,7 @@ const NavigationLink = ({ route, imageUrl, label, isDesktop }: Props) => {
 
   if (route === "/profile") {
     if (userId) route = `${route}/${userId}`;
-    else return null;
+    else route = "/sign-in";
   }
 
   return (
