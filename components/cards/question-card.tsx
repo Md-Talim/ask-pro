@@ -1,8 +1,8 @@
 import Metric from "@/components/shared/metric";
 import RenderTag from "@/components/shared/render-tag";
 import { formatAndDivideNumber, getTimestamp } from "@/lib/utils";
-import Link from "next/link";
 import { SignedIn } from "@clerk/nextjs";
+import Link from "next/link";
 import EditDeleteAction from "../shared/edit-delete-action";
 
 interface Props {
@@ -76,27 +76,29 @@ const QuestionCard = ({
           isAuthor
         />
 
-        <Metric
-          iconUrl="/assets/icons/like.svg"
-          alt="Upvotes"
-          value={formatAndDivideNumber(upvotes)}
-          title="Votes"
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Metric
-          iconUrl="/assets/icons/message.svg"
-          alt="Messages"
-          value={formatAndDivideNumber(answers.length)}
-          title="Answers"
-          textStyles="small-medium text-dark400_light800"
-        />
-        <Metric
-          iconUrl="/assets/icons/eye.svg"
-          alt="Eye"
-          value={formatAndDivideNumber(views)}
-          title="Views"
-          textStyles="small-medium text-dark400_light800"
-        />
+        <div className="flex flex-wrap items-center gap-3 max-sm:flex-wrap max-sm:justify-start">
+          <Metric
+            iconUrl="/assets/icons/like.svg"
+            alt="Upvotes"
+            value={formatAndDivideNumber(upvotes)}
+            title="Votes"
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Metric
+            iconUrl="/assets/icons/message.svg"
+            alt="Messages"
+            value={formatAndDivideNumber(answers.length)}
+            title="Answers"
+            textStyles="small-medium text-dark400_light800"
+          />
+          <Metric
+            iconUrl="/assets/icons/eye.svg"
+            alt="Eye"
+            value={formatAndDivideNumber(views)}
+            title="Views"
+            textStyles="small-medium text-dark400_light800"
+          />
+        </div>
       </div>
     </article>
   );
