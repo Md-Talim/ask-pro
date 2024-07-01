@@ -36,50 +36,48 @@ const Navigations = () => (
   </nav>
 );
 
-const MobileNav = () => {
-  return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Image
-          src="/assets/icons/hamburger.svg"
-          height={36}
-          width={36}
-          alt="Menu"
-          className="invert-colors cursor-pointer sm:hidden"
-        />
-      </SheetTrigger>
-      <SheetContent
-        side="left"
-        className="background-light900_dark200 border-none"
-      >
-        <Logo />
+const MobileNav = () => (
+  <Sheet>
+    <SheetTrigger asChild>
+      <Image
+        src="/assets/icons/hamburger.svg"
+        height={36}
+        width={36}
+        alt="Menu"
+        className="invert-colors cursor-pointer sm:hidden"
+      />
+    </SheetTrigger>
+    <SheetContent
+      side="left"
+      className="background-light900_dark200 border-none"
+    >
+      <Logo />
 
-        <SheetClose>
-          <Navigations />
-        </SheetClose>
+      <SheetClose>
+        <Navigations />
+      </SheetClose>
 
-        <SignedOut>
-          <div className="flex flex-col gap-y-3">
-            <SheetClose asChild>
-              <Link href={"/sign-in"}>
-                <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                  <span className="primary-text-gradient">Login</span>
-                </Button>
-              </Link>
-            </SheetClose>
+      <SignedOut>
+        <div className="flex flex-col gap-y-3">
+          <SheetClose asChild>
+            <Link href={"/sign-in"}>
+              <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                <span className="primary-text-gradient">Login</span>
+              </Button>
+            </Link>
+          </SheetClose>
 
-            <SheetClose asChild>
-              <Link href={"/sign-up"}>
-                <Button className="small-medium btn-tertiary text-dark400_light900 light-border-2 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
-                  Signup
-                </Button>
-              </Link>
-            </SheetClose>
-          </div>
-        </SignedOut>
-      </SheetContent>
-    </Sheet>
-  );
-};
+          <SheetClose asChild>
+            <Link href={"/sign-up"}>
+              <Button className="small-medium btn-tertiary text-dark400_light900 light-border-2 min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none">
+                Signup
+              </Button>
+            </Link>
+          </SheetClose>
+        </div>
+      </SignedOut>
+    </SheetContent>
+  </Sheet>
+);
 
 export default MobileNav;

@@ -26,23 +26,21 @@ export const metadata: Metadata = {
   },
 };
 
-const AppLayout = ({ children }: { children: ReactNode }) => {
-  return (
-    <ClerkProvider
-      appearance={{
-        elements: {
-          formButtonPrimary: "primary-gradient",
-          footerActionLink: "primary-text-gradient hover:text-primary-500",
-        },
-      }}
-    >
-      <html lang="en">
-        <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
-          <ThemeContextProvider>{children}</ThemeContextProvider>
-        </body>
-      </html>
-    </ClerkProvider>
-  );
-};
+const AppLayout = ({ children }: { children: ReactNode }) => (
+  <ClerkProvider
+    appearance={{
+      elements: {
+        formButtonPrimary: "primary-gradient",
+        footerActionLink: "primary-text-gradient hover:text-primary-500",
+      },
+    }}
+  >
+    <html lang="en">
+      <body className={`${inter.variable} ${spaceGrotesk.variable}`}>
+        <ThemeContextProvider>{children}</ThemeContextProvider>
+      </body>
+    </html>
+  </ClerkProvider>
+);
 
 export default AppLayout;
