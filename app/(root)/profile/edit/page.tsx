@@ -1,6 +1,6 @@
 import ProfileForm from "@/components/forms/profile-form";
 import { getUserById } from "@/lib/actions/user.action";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 const QuestionEditPage = async () => {
   const { userId } = auth();

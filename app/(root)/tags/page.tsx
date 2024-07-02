@@ -7,6 +7,7 @@ import { getAllTags } from "@/lib/actions/tag.action";
 import { SearchParamsProps } from "@/types";
 import { Metadata } from "next";
 import Link from "next/link";
+import { Key } from "react";
 
 export const metadata: Metadata = {
   title: "Tags | AskPro",
@@ -47,7 +48,7 @@ const TagsPage = async ({ searchParams }: SearchParamsProps) => {
           result.tags.map((tag) => (
             <Link
               href={`/tags/${tag._id}`}
-              key={tag._id}
+              key={tag._id as Key}
               className="shadow-light100_darknone"
             >
               <article className="background-light900_dark200 light-border flex w-full flex-col rounded-2xl border px-8 py-10 sm:w-64">
