@@ -2,6 +2,8 @@
 
 AskPro is a dynamic Q&A platform designed to foster knowledge sharing and community interaction, similar to Stack Overflow. Users can post questions, provide answers, and engage with the community through voting and saving their favorite content.
 
+![AskPro Screenshot](/public/assets/images/screenshot.png)
+
 ## Features
 
 - **Ask Questions:** Users can post questions on various topics to seek answers from the community.
