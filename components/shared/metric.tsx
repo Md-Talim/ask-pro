@@ -28,7 +28,7 @@ const Metric = ({
         height={16}
         width={16}
         alt={alt}
-        className={clsx("object-contain", href && "rounded-full")}
+        className="rounded-full object-contain"
       />
 
       <p className={clsx(textStyles, "flex items-center gap-1")}>
